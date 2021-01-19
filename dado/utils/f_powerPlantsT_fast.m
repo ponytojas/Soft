@@ -1,4 +1,4 @@
-function [pwr_T,gan_T,cost_T,obj_T] = f_powerPlantsT_fast(vVec,gr)
+function [pwr_T,gan_T,cost_T,obj_T, pwrGenIndv_T] = f_powerPlantsT_fast(vVec,gr)
 % Inputs: vVec: Vectores Directores (single) del Viento en Coordenadas Cartesianas.
 %         gr:   Matriz Cuadrada con 0s y 1s que representa la localización
 %               de los generadores 
@@ -16,6 +16,7 @@ pwr_T  = zeros(1,nH);
 gan_T  = zeros(1,nH);
 cost_T = zeros(1,nH);
 obj_T  = zeros(1,nH);
+pwrGenIndv_T = zeros(1,size(gr, 1));
 
 %Select Wind Dir from vVec
 avVec = atan2(vVec(2,:),vVec(1,:));
@@ -28,11 +29,12 @@ for l=1:length(angVec)
 end
 
 for l=1:nH
-    [pwr_t,~,~,gan,cost,obj] = f_powerPlants_f2(vVec(:,l),gr,ppPower,rUDef_T(:,:,l));   % Vector + Logical Matrix
+    [pwr_t,pwrGen,~,gan,cost,obj] = f_powerPlants_f2(vVec(:,l),gr,ppPower,rUDef_T(:,:,l));   % Vector + Logical Matrix
     pwr_T(l)  = pwr_t;
     gan_T(l)  = gan;
     cost_T(l) = cost;
     obj_T(l)  = obj;
+    pwrGenIndv_T = pwrGenIndv_T + pwrGen;
 end
 pwr_T = sum(pwr_T,'all');
 gan_T = sum(gan_T,'all');
