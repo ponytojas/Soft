@@ -22,7 +22,7 @@ Kgr = 20;
 Nturb = 20;
 
 % Numero de iteraciones
-steps = 1000; 
+steps = 5000; 
 
 % Temperatura inicial
 TempIni  = 250;
@@ -81,10 +81,10 @@ iter = 0;
 contador = 0;
 sin_entrar = 0;
 cantidad_mutaciones = K;
-
+fin = 0;
 
 %% Kgr Grid with Nturb Turbines
-while(T > Tmin)
+while(T > Tmin && ~fin)
     iter = iter + 1;
     
     % Por cada descenso de temperatura realizamos diferentes mutaciones
@@ -95,6 +95,7 @@ while(T > Tmin)
         % mejorado
         if(sin_entrar >= limite_sin_entrar)
             disp("No esta siendo posible mejorar los resultados, salimos");
+            fin = 1;
             break;
         end
         
