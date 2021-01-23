@@ -22,7 +22,7 @@ Kgr = 20;
 Nturb = 20;
 
 % Numero de iteraciones
-steps = 5000; 
+steps = 1000; 
 
 % Temperatura inicial
 TempIni  = 250;
@@ -49,6 +49,9 @@ limite_sin_entrar = 15000;
 % si es 1
 aleatorio = 0; 
 
+% Variable para controlar si las mutaciones deben ser fijas o no
+mutaciones_fijas = 0;
+
 % Cantidad de mutaciones del mas optimo o generaciones automaticas por cada
 % iteracion que realizamos
 cantidad_por_iteracion = 15;
@@ -68,7 +71,7 @@ historico_fitness = ones(1,steps);
 x = ones(1,steps);
 historico_temp = ones(1,steps);
 historico_sin_entrar = ones(1, steps);
-historio_mutaciones = ones(1, steps);
+historico_mutaciones = ones(1, steps);
 
 
 %% Configuracion de las temperaturas minimas y la que ira descendiendo
@@ -101,7 +104,7 @@ while(T > Tmin && ~fin)
         
         % Modificamos la cantidad de mutaciones que generamos reduciendo en
         % uno las mutaciones que estabamos realizando
-        if(sin_entrar > cambiar_mutaciones && ~aleatorio && cantidad_mutaciones ~= 1)
+        if(~mutaciones_fijas && ~aleatorio && cantidad_mutaciones ~= 1 && sin_entrar > cambiar_mutaciones )
             if(mod(sin_entrar, cambiar_mutaciones) == 0)
                  cantidad_mutaciones =  cantidad_mutaciones - 1;
             end
@@ -162,7 +165,7 @@ while(T > Tmin && ~fin)
     x(iter) = iter;
     historico_temp(iter) = T;
     historico_sin_entrar(iter) = sin_entrar;
-    historio_mutaciones(iter) = cantidad_mutaciones;
+    historico_mutaciones(iter) = cantidad_mutaciones;
     
 end
 
@@ -195,7 +198,7 @@ ylabel('Cantidad de iteraciones sin entrar')
 
 %% Dibujar grafica Temperaturas
 figure
-plot(x, historio_mutaciones);
+plot(x, historico_mutaciones);
 
 title('Mutaciones')
 xlabel('Iteraciones')
