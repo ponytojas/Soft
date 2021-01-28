@@ -1,19 +1,20 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%% Generar grafica comparativa %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-load comparacion.mat
-load sin_entrar.mat
+clc; clear
+load comparacion_fitness.mat
+load comparacion_sin_entrar.mat
+load comparacion_x.mat
 
 %% Generacion de grafica comparativa de resultados
 figure
-plot(x,random_fitness) 
+plot(x, fitness_random) 
 hold on 
-plot(x, tres_mutaciones)
+plot(x, fitness_tres_mutaciones)
 hold on
-plot(x,una_mutacion) 
+plot(x, fitness_una_mutacion) 
 hold on 
-plot(x,variable_mutaciones)
+plot(x, fitness_mutaciones_variables)
 hold off
 legend('Valores aleatorios', 'Tres mutaciones fijas', 'Una mutacion fija', 'Mutaciones variables')
 title('Comparacion de resultados')
@@ -22,13 +23,13 @@ ylabel('Valor fitness');
 
 %% Generacion de grafica comparativa de las veces sin entrar
 figure
-plot(x,sin_entrar_aleatorio) 
+plot(x, sin_entrar_random) 
 hold on 
-plot(x, sin_entrar_tres)
+plot(x, sin_entrar_tres_mutaciones)
 hold on
-plot(x, sin_entrar_uno) 
+plot(x, sin_entrar_una_mutacion) 
 hold on 
-plot(x, sin_entrar_variable)
+plot(x, sin_entrar_mutaciones_variables)
 hold off
 legend('Valores aleatorios', 'Tres mutaciones fijas', 'Una mutacion fija', 'Mutaciones variables')
 title('Comparacion de veces sin entrar')

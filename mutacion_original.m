@@ -1,4 +1,4 @@
-function gr = mutacion_old(gr, K, Kgr)
+function gr = mutacion_original(gr, K, Kgr)
     result = find(gr==1);
     mutation_vector = randperm(20,K);
     index_to_change = result(mutation_vector);
@@ -21,6 +21,6 @@ function gr = mutacion_old(gr, K, Kgr)
         fprintf('La cantidad de turbinas ha sido');
         fprintf(length(gr(gr == 1)))
         fprintf('Ha habido un error al generar las mutaciones, volvemos a entrar');
-        gr = mutacion_old(gr, K, Kgr);
+        gr = mutacion_original(gr, K, Kgr);
     end
 end

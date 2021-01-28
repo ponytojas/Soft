@@ -37,7 +37,7 @@ if (K > Nturb)
    K = Nturb; 
 end
 
-% Veces que es necesario no entrar a modificar el el valor de fitness 
+% Veces que es necesario no entrar a modificar el valor de fitness 
 % para modificar las mutaciones
 cambiar_mutaciones = 20; 
 
